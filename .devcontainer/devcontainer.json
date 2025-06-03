@@ -1,0 +1,74 @@
+{
+    "name": "dot-devcontainer-golang-1.24",
+    "image": "ghcr.io/bearfield/golang:1.24",
+    "remoteUser": "kumano_ryo",
+    "mounts": [
+        "source=${localEnv:HOME}/devcontainer_conf/.gitconfig_linux,target=/home/kumano_ryo/.gitconfig,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.config/gcloud,target=/home/kumano_ryo/.config/gcloud,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.ssh,target=/home/kumano_ryo/.ssh,type=bind,consistency=cached"
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+            "version": "latest",
+            "enableNonRootDocker": "true",
+            "moby": "true"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.profiles.linux": {
+                    "fish": {
+                        "path": "fish"
+                    }
+                },
+                "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
+                "workbench.colorCustomizations": {
+                    "statusBar.background": "#00ADD8",
+                    "statusBar.foreground": "#000000"
+                },
+                "go.interGopath": false,
+                "go.useLanguageServer": true,
+                "go.toolsEnvVars": {
+                    "GO111MODULE": "on"
+                },
+                "[go]": {
+                    "editor.snippetSuggestions": "none",
+                    "editor.formatOnSave": true
+                },
+                "gopls": {
+                    "usePlaceholders": true,
+                    "formatting.gofumpt": true
+                },
+                "go.lintTool": "golangci-lint",
+                "go.lintFlags": [
+                    "--fast",
+                    "--print-issued-lines=false",
+                    "--out-format=colored-line-number",
+                    "--issues-exit-code=0"
+                ],
+                "go.testTimeout": "1800s",
+                "go.testFlags": ["-v", "-count=1"],
+                "go.testEnvVars": {
+                }
+            },
+            "extensions": [
+                "wayou.vscode-todo-highlight",
+                "redhat.vscode-yaml",
+                "timonwong.shellcheck",
+                "foxundermoon.shell-format",
+                "github.copilot",
+                "bmalehorn.vscode-fish",
+                "ms-vscode.makefile-tools",
+                "eamodio.gitlens",
+                "github.vscode-pull-request-github",
+                "ms-azuretools.vscode-docker",
+                "docker.docker",
+                "github.vscode-github-actions",
+                "github.copilot-chat",
+                "aquasecurityofficial.trivy-vulnerability-scanner",
+                "golang.go"
+            ]
+        }
+    }
+}
