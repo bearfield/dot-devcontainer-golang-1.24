@@ -1,9 +1,12 @@
 FROM ghcr.io/bearfield/debian-fish:bookworm
 #
+# Build arguments
+ARG GOLANG_VERSION=1.24.3
+ARG USER_NAME=devuser
+#
 # set env
-ENV GOLANG_VERSION=1.24.3
+ENV GOLANG_VERSION=${GOLANG_VERSION}
 ENV PATH=/usr/local/go/bin:$PATH
-
 #
 # Install go 1.24.
 USER root
@@ -23,7 +26,7 @@ ENV GOPATH=/go
 ENV PATH=$GOPATH/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
-USER kumano_ryo
+USER $USER_NAME
 # set env
 ENV DEBIAN_FRONTEND=dialog
 LABEL org.opencontainers.image.source="https://github.com/bearfield/dot-devcontainer-golang-1.24"

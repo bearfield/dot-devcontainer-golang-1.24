@@ -1,11 +1,15 @@
 {
     "name": "dot-devcontainer-golang-1.24",
     "image": "ghcr.io/bearfield/golang:1.24",
-    "remoteUser": "kumano_ryo",
+    "containerEnv": {
+        "DEVCONTAINER_USER": "devuser"
+    },
+    "remoteUser": "${containerEnv:DEVCONTAINER_USER}",
     "mounts": [
-        "source=${localEnv:HOME}/devcontainer_conf/.gitconfig_linux,target=/home/kumano_ryo/.gitconfig,type=bind,consistency=cached",
-        "source=${localEnv:HOME}/.config/gcloud,target=/home/kumano_ryo/.config/gcloud,type=bind,consistency=cached",
-        "source=${localEnv:HOME}/.ssh,target=/home/kumano_ryo/.ssh,type=bind,consistency=cached"
+        "source=${localEnv:HOME}/devcontainer_conf/.gitconfig_linux,target=/home/${containerEnv:DEVCONTAINER_USER}/.gitconfig,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.config/gcloud,target=/home/${containerEnv:DEVCONTAINER_USER}/.config/gcloud,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.ssh,target=/home/${containerEnv:DEVCONTAINER_USER}/.ssh,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.claude,target=/home/${containerEnv:DEVCONTAINER_USER}/.claude,type=bind,consistency=cached"
     ],
     "features": {
         "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
@@ -66,6 +70,8 @@
                 "docker.docker",
                 "github.vscode-github-actions",
                 "github.copilot-chat",
+                "vstirbu.vscode-mermaid-preview",
+                "anthropic.claude-code",
                 "aquasecurityofficial.trivy-vulnerability-scanner",
                 "golang.go"
             ]
