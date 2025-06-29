@@ -33,6 +33,6 @@ The Dockerfile installs Go 1.24.3 with necessary build tools (gcc, g++, libc6-de
 ## Container Configuration
 
 - **GOPATH**: `/go`
-- **User**: `kumano_ryo`
+- **User**: `${localEnv:USER}` (dynamic based on host user)
 - **Shell**: fish (inherited from base image)
 - **Working Directory**: `$GOPATH`

@@ -69,13 +69,16 @@ GitHub Actionsにより、以下のタイミングで自動ビルドとリリー
 
 - **GOPATH**: `/go`
 - **作業ディレクトリ**: `/go`
-- **ユーザー**: カスタマイズ可能（デフォルト: devuser）
+- **ユーザー**: 環境変数`${localEnv:USER}`で動的設定
 
-### カスタマイズ
+### VS Code Dev Container設定
 
-GitHub リポジトリの変数で以下をカスタマイズできます：
+以下のホスト環境設定がコンテナにマウントされます：
 
-- `CONTAINER_USER_NAME`: コンテナ内のユーザー名（デフォルト: devuser）
+- `~/.gitconfig` (Linux用設定)
+- `~/.config/gcloud` (Google Cloud CLI設定)
+- `~/.ssh` (SSH鍵)
+- `~/.claude` (Claude Code設定)
 
 ## 必要な設定
 
